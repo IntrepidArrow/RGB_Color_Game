@@ -13,7 +13,7 @@ button {
     font-weight: 700;
     font-size: inherit;
     color: steelblue;
-    letter-spacing: 1.0px;
+    letter-spacing: 0.5px;
 }
 
 button:hover {
@@ -55,7 +55,7 @@ button:hover {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     font-size: inherit;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .header {
