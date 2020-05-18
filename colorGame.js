@@ -83,7 +83,7 @@ function generateRandomColor() {
 }
 
 function reset_board(mode) {
-    rgb_header.style.backgroundColor = "#232323";
+    rgb_header.style.backgroundColor = "steelblue";
     message.textContent = "";
     reset_btn.textContent = "New Colors!"
 
