@@ -48,7 +48,7 @@ function setupSquareListeners() {
                 reset_btn.textContent = "Play Again?";
             } else {
                 this.style.backgroundColor = "#232323";
-                message.textContent = "Wrong! Try Again!";
+                message.textContent = "Try Again!";
             }
         });
     }
