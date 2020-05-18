@@ -1,4 +1,7 @@
-let colors = generateColorsArray(6);
+
+let number_of_squares = 6;
+let colors = generateColorsArray(number_of_squares);
+let game_mode = "hard";
 
 // Getting all squares to assign RGB values to each by index  
 let squares = document.querySelectorAll(".square");
@@ -7,6 +10,8 @@ let displayColor = document.querySelector("#displayColor");
 let message = document.querySelector("#message");
 let rgb_header = document.querySelector("#rgb_header");
 let reset_btn = document.querySelector("#reset");
+let easy_btn = document.querySelector("#mode_easy");
+let hard_btn = document.querySelector("#mode_hard");
 
 
 // Display the selected color value to the page header/title
@@ -28,20 +33,24 @@ for (let i = 0; i < squares.length; i++) {
     });
 }
 
+// Change the board settings upon New Game or Try Again
 reset_btn.addEventListener("click", function () {
-    rgb_header.style.backgroundColor = "#232323";
-    message.textContent = "";
-    reset_btn.textContent = "New Colors!"
-
-    colors = generateColorsArray(6);
-    selectedColor = chooseGameColor(colors);
-    displayColor.textContent = selectedColor;
-
-    for (let i = 0; i < squares.length; i++) {
-        squares[i].style.backgroundColor = colors[i];
-    }
+    reset_board(game_mode);
 });
 
+easy_btn.addEventListener("click", function () {
+    hard_btn.classList.remove("selected");
+    easy_btn.classList.add("selected");
+    reset_board("easy");
+});
+
+hard_btn.addEventListener("click", function () {
+    easy_btn.classList.remove("selected");
+    hard_btn.classList.add("selected");
+    reset_board("hard");
+});
+
+// Function changes the color of all tiles to specific color
 function changeAllToSpecificColor(color) {
     for (let i = 0; i < squares.length; i++) {
         squares[i].style.backgroundColor = color;
@@ -71,4 +80,32 @@ function generateRandomColor() {
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
     return "rgb(" + r + ", " + g + ", " + b + ")";
+}
+
+function reset_board(mode) {
+    rgb_header.style.backgroundColor = "#232323";
+    message.textContent = "";
+    reset_btn.textContent = "New Colors!"
+
+    if (mode === "easy") {
+        game_mode = "easy";
+        number_of_squares = 3;
+        for (let i = 3; i <= 5; i++) {
+            squares[i].classList.add("hide_block");
+        }
+    } else {
+        game_mode = "hard";
+        number_of_squares = 6;
+        for (let i = 3; i <= 5; i++) {
+            squares[i].classList.remove("hide_block");
+        }
+    }
+
+    colors = generateColorsArray(number_of_squares);
+    selectedColor = chooseGameColor(colors);
+    displayColor.textContent = selectedColor;
+
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].style.backgroundColor = colors[i];
+    }
 }
