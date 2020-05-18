@@ -5,6 +5,9 @@ let squares = document.querySelectorAll(".square");
 let selectedColor = chooseGameColor(colors);
 let displayColor = document.querySelector("#displayColor");
 let message = document.querySelector("#message");
+let rgb_header = document.querySelector("#rgb_header");
+let reset_btn = document.querySelector("#reset");
+
 
 // Display the selected color value to the page header/title
 displayColor.textContent = selectedColor;
@@ -16,12 +19,28 @@ for (let i = 0; i < squares.length; i++) {
         if (this.style.backgroundColor === displayColor.textContent) {
             message.textContent = "Correct!";
             changeAllToSpecificColor(selectedColor);
+            rgb_header.style.backgroundColor = selectedColor;
+            reset_btn.textContent = "Play Again?";
         } else {
             this.style.backgroundColor = "#232323";
             message.textContent = "Wrong! Try Again!";
         }
     });
 }
+
+reset_btn.addEventListener("click", function () {
+    rgb_header.style.backgroundColor = "#232323";
+    message.textContent = "";
+    reset_btn.textContent = "New Colors!"
+
+    colors = generateColorsArray(6);
+    selectedColor = chooseGameColor(colors);
+    displayColor.textContent = selectedColor;
+
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].style.backgroundColor = colors[i];
+    }
+});
 
 function changeAllToSpecificColor(color) {
     for (let i = 0; i < squares.length; i++) {
