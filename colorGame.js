@@ -2,9 +2,9 @@
 let number_of_squares = 6;
 let colors = generateColorsArray(number_of_squares);
 let game_mode = "hard";
+let selectedColor = chooseGameColor(colors);
 
 let squares = document.querySelectorAll(".square");
-let selectedColor = chooseGameColor(colors);
 let displayColor = document.querySelector("#displayColor");
 let message = document.querySelector("#message");
 let rgb_header = document.querySelector("#rgb_header");
